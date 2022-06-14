@@ -47,5 +47,25 @@ nmcli connection show "Wired connection 1"
 working till now
 
 
+sudo apt install libsystemd-dev  
+fixed inclusion of
+#include <gio/gio.h>
+#include <nm-dbus-interface.h>
+NOT WORKED
 
 
+
+
+
+WORKED: sudo apt install libnm-dev
+
+
+
+examples study:
+https://fossies.org/linux/misc/NetworkManager-1.38.0.tar.xz/NetworkManager-1.38.0/examples/C/glib/get-ap-info-libnm.c?m=t
+Working code gives gives available networks: https://cgit.freedesktop.org/NetworkManager/NetworkManager/tree/examples/C/glib/get-active-connections-gdbus.c
+
+
+REFERENCE MANUALS:
+https://developer-old.gnome.org/libnm/stable/
+https://developer-old.gnome.org/libnm/stable/usage.html
