@@ -122,3 +122,4 @@ https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/gobject/gobj
 https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/glib-GVariant.html#g-variant-n-children
 https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/gvariant-text.html
 https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/gio/GDBusProxy.html
+https://libsoup.org/gio/GDBusProxy.html
