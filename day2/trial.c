@@ -269,5 +269,7 @@ int main(int argc, char *argv[])
     // printf("\nhere is the clent status:%d\n",    nm_client_get_connectivity() );
     NMConnection *conObj;
     printf("here is the connection setting:%d\n",nm_connection_get_setting_wired(conObj));
+    NMAccessPoint *apobj;
+    nm_access_point_get_ssid()
     return 0;
 }
