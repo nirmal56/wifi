@@ -105,6 +105,8 @@ NM_STATE_CONNECTED_GLOBAL = 70           there is global IPv4 and/or IPv6 Intern
 
  
 GnetworkMonitor:https://www.freedesktop.org/software/gstreamer-sdk/data/docs/2012.5/gio/GNetworkMonitor.html
+https://libsoup.org/gio/GNetworkMonitor.html
+
 
 GDBusProxy *        g_dbus_proxy_new_for_bus_sync       (GBusType bus_type,
                                                          GDBusProxyFlags flags,
@@ -114,3 +116,9 @@ GDBusProxy *        g_dbus_proxy_new_for_bus_sync       (GBusType bus_type,
                                                          const gchar *interface_name,
                                                          GCancellable *cancellable,
                                                          GError **error);
+
+https://github.com/lcp/NetworkManager/blob/master/examples/C/glib/monitor-nm-state-GDBus.c
+https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/gobject/gobject-Closures.html
+https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/glib-GVariant.html#g-variant-n-children
+https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/gvariant-text.html
+https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/gio/GDBusProxy.html
