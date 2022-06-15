@@ -101,3 +101,5 @@ The host is connected to a network, does not appear to be able to reach the full
 NM_CONNECTIVITY_FULL
 
 The host is connected to a network, and appears to be able to reach the full Internet.
+
+GnetworkMonitor:https://www.freedesktop.org/software/gstreamer-sdk/data/docs/2012.5/gio/GNetworkMonitor.html
