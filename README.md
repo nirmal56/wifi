@@ -76,30 +76,41 @@ https://developer-old.gnome.org/libnm/stable/usage.html
 
 DAY3:
 
-enum NMConnectivityState:
+enum NMState
+NMState values indicate the current overall networking state.
 
-NM_CONNECTIVITY_UNKNOWN
-
-Network connectivity is unknown. This means the connectivity checks are disabled (e.g. on server installations) or has not run yet. The graphical shell should assume the Internet connection might be available and not present a captive portal window.
-
- 
-NM_CONNECTIVITY_NONE
-
-The host is not connected to any network. There's no active connection that contains a default route to the internet and thus it makes no sense to even attempt a connectivity check. The graphical shell should use this state to indicate the network connection is unavailable.
+Values
+NM_STATE_UNKNOWN = 0             networking state is unknown
 
  
-NM_CONNECTIVITY_PORTAL
-
-The Internet connection is hijacked by a captive portal gateway. The graphical shell may open a sandboxed web browser window (because the captive portals typically attempt a man-in-the-middle attacks against the https connections) for the purpose of authenticating to a gateway and retrigger the connectivity check with CheckConnectivity() when the browser window is dismissed.
+NM_STATE_ASLEEP = 10             networking is not enabled
 
  
-NM_CONNECTIVITY_LIMITED
-
-The host is connected to a network, does not appear to be able to reach the full Internet, but a captive portal has not been detected.
+NM_STATE_DISCONNECTED = 20           there is no active network connection
 
  
-NM_CONNECTIVITY_FULL
+NM_STATE_DISCONNECTING = 30          network connections are being cleaned up
 
-The host is connected to a network, and appears to be able to reach the full Internet.
+ 
+NM_STATE_CONNECTING = 40             a network connection is being started
 
+ 
+NM_STATE_CONNECTED_LOCAL = 50            there is only local IPv4 and/or IPv6 connectivity
+
+ 
+NM_STATE_CONNECTED_SITE = 60             there is only site-wide IPv4 and/or IPv6 connectivity
+
+ 
+NM_STATE_CONNECTED_GLOBAL = 70           there is global IPv4 and/or IPv6 Internet connectivity
+
+ 
 GnetworkMonitor:https://www.freedesktop.org/software/gstreamer-sdk/data/docs/2012.5/gio/GNetworkMonitor.html
+
+GDBusProxy *        g_dbus_proxy_new_for_bus_sync       (GBusType bus_type,
+                                                         GDBusProxyFlags flags,
+                                                         GDBusInterfaceInfo *info,
+                                                         const gchar *name,
+                                                         const gchar *object_path,
+                                                         const gchar *interface_name,
+                                                         GCancellable *cancellable,
+                                                         GError **error);
