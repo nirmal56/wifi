@@ -1,0 +1,3 @@
+/home/nirmal/user/wifi/day3/lib/build/CMakeFiles/rebuild_cache.dir
+/home/nirmal/user/wifi/day3/lib/build/CMakeFiles/edit_cache.dir
+/home/nirmal/user/wifi/day3/lib/build/CMakeFiles/networkStatus.dir
