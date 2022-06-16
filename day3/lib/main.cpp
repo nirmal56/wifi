@@ -18,7 +18,7 @@ int main(){
     g_print("==============================\n");
 
     flags = G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES | G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START;
-    proxy = g_dbus_proi8xy_new_for_bus_sync(G_BUS_TYPE_SYSTEM,
+    proxy = g_dbus_proxy_new_for_bus_sync(G_BUS_TYPE_SYSTEM,
                                           flags,
                                           NULL, /* GDBusInterfaceInfo */
                                           "org.freedesktop.NetworkManager",
