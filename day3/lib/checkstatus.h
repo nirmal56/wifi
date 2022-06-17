@@ -1,10 +1,9 @@
 #include <gio/gio.h>
 #include <string.h>
+#include <string>
 #include <NetworkManager.h>
 
 class networkStatusCheck{
-    private:
-    static const char * nm_stat_to_string(NMStat state);
 
     public:
 
@@ -17,5 +16,9 @@ class networkStatusCheck{
                         gpointer user_data);
     
     ~networkStatusCheck(){}
+
+    private:
+
+    std::string nm_stat_to_string(NMState state);
 
 };

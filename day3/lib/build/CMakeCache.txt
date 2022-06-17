@@ -219,7 +219,13 @@ networkStatus_BINARY_DIR:STATIC=/home/nirmal/user/wifi/day3/lib/build
 networkStatus_SOURCE_DIR:STATIC=/home/nirmal/user/wifi/day3/lib
 
 //Path to a library.
+pkgcfg_lib_GLIB_gio-2.0:FILEPATH=/usr/lib/x86_64-linux-gnu/libgio-2.0.so
+
+//Path to a library.
 pkgcfg_lib_GLIB_glib-2.0:FILEPATH=/usr/lib/x86_64-linux-gnu/libglib-2.0.so
+
+//Path to a library.
+pkgcfg_lib_GLIB_gobject-2.0:FILEPATH=/usr/lib/x86_64-linux-gnu/libgobject-2.0.so
 
 
 ########################
@@ -371,46 +377,56 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
-GLIB_CFLAGS:INTERNAL=-I/usr/include/glib-2.0;-I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+GLIB_CFLAGS:INTERNAL=-pthread;-I/usr/include/libmount;-I/usr/include/blkid;-I/usr/include/glib-2.0;-I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 GLIB_CFLAGS_I:INTERNAL=
-GLIB_CFLAGS_OTHER:INTERNAL=
+GLIB_CFLAGS_OTHER:INTERNAL=-pthread
 GLIB_FOUND:INTERNAL=1
-GLIB_INCLUDEDIR:INTERNAL=/usr/include
-GLIB_INCLUDE_DIRS:INTERNAL=/usr/include/glib-2.0;/usr/lib/x86_64-linux-gnu/glib-2.0/include
-GLIB_LDFLAGS:INTERNAL=-lglib-2.0
+GLIB_INCLUDEDIR:INTERNAL=
+GLIB_INCLUDE_DIRS:INTERNAL=/usr/include/libmount;/usr/include/blkid;/usr/include/glib-2.0;/usr/lib/x86_64-linux-gnu/glib-2.0/include
+GLIB_LDFLAGS:INTERNAL=-lgio-2.0;-lgobject-2.0;-lglib-2.0
 GLIB_LDFLAGS_OTHER:INTERNAL=
-GLIB_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
-GLIB_LIBRARIES:INTERNAL=glib-2.0
+GLIB_LIBDIR:INTERNAL=
+GLIB_LIBRARIES:INTERNAL=gio-2.0;gobject-2.0;glib-2.0
 GLIB_LIBRARY_DIRS:INTERNAL=
 GLIB_LIBS:INTERNAL=
 GLIB_LIBS_L:INTERNAL=
 GLIB_LIBS_OTHER:INTERNAL=
 GLIB_LIBS_PATHS:INTERNAL=
-GLIB_MODULE_NAME:INTERNAL=glib-2.0
-GLIB_PREFIX:INTERNAL=/usr
-GLIB_STATIC_CFLAGS:INTERNAL=-I/usr/include/glib-2.0;-I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+GLIB_MODULE_NAME:INTERNAL=
+GLIB_PREFIX:INTERNAL=
+GLIB_STATIC_CFLAGS:INTERNAL=-pthread;-I/usr/include/libmount;-I/usr/include/blkid;-I/usr/include/glib-2.0;-I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 GLIB_STATIC_CFLAGS_I:INTERNAL=
-GLIB_STATIC_CFLAGS_OTHER:INTERNAL=
-GLIB_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/glib-2.0;/usr/lib/x86_64-linux-gnu/glib-2.0/include
-GLIB_STATIC_LDFLAGS:INTERNAL=-lglib-2.0;-pthread;-lpcre;-pthread
+GLIB_STATIC_CFLAGS_OTHER:INTERNAL=-pthread
+GLIB_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/libmount;/usr/include/blkid;/usr/include/glib-2.0;/usr/lib/x86_64-linux-gnu/glib-2.0/include
+GLIB_STATIC_LDFLAGS:INTERNAL=-lgio-2.0;-ldl;-pthread;-lresolv;-lgmodule-2.0;-pthread;-ldl;-lz;-lmount;-lblkid;-lselinux;-lsepol;-lpcre2-8;-pthread;-lgobject-2.0;-pthread;-lffi;-lglib-2.0;-pthread;-lpcre;-pthread
 GLIB_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread
 GLIB_STATIC_LIBDIR:INTERNAL=
-GLIB_STATIC_LIBRARIES:INTERNAL=glib-2.0;pcre
+GLIB_STATIC_LIBRARIES:INTERNAL=gio-2.0;dl;resolv;gmodule-2.0;dl;z;mount;blkid;selinux;sepol;pcre2-8;gobject-2.0;ffi;glib-2.0;pcre
 GLIB_STATIC_LIBRARY_DIRS:INTERNAL=
 GLIB_STATIC_LIBS:INTERNAL=
 GLIB_STATIC_LIBS_L:INTERNAL=
 GLIB_STATIC_LIBS_OTHER:INTERNAL=
 GLIB_STATIC_LIBS_PATHS:INTERNAL=
-GLIB_VERSION:INTERNAL=2.64.6
-GLIB_glib-2.0_INCLUDEDIR:INTERNAL=
-GLIB_glib-2.0_LIBDIR:INTERNAL=
-GLIB_glib-2.0_PREFIX:INTERNAL=
-GLIB_glib-2.0_VERSION:INTERNAL=
+GLIB_VERSION:INTERNAL=
+GLIB_gio-2.0_INCLUDEDIR:INTERNAL=/usr/include
+GLIB_gio-2.0_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+GLIB_gio-2.0_MODULE_NAME:INTERNAL=gio-2.0
+GLIB_gio-2.0_PREFIX:INTERNAL=/usr
+GLIB_gio-2.0_VERSION:INTERNAL=2.64.6
+GLIB_glib-2.0_INCLUDEDIR:INTERNAL=/usr/include
+GLIB_glib-2.0_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+GLIB_glib-2.0_MODULE_NAME:INTERNAL=glib-2.0
+GLIB_glib-2.0_PREFIX:INTERNAL=/usr
+GLIB_glib-2.0_VERSION:INTERNAL=2.64.6
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
-__pkg_config_arguments_GLIB:INTERNAL=REQUIRED;glib-2.0
+__pkg_config_arguments_GLIB:INTERNAL=REQUIRED;glib-2.0;gio-2.0
 __pkg_config_checked_GLIB:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_GLIB_gio-2.0
+pkgcfg_lib_GLIB_gio-2.0-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_GLIB_glib-2.0
 pkgcfg_lib_GLIB_glib-2.0-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_GLIB_gobject-2.0
+pkgcfg_lib_GLIB_gobject-2.0-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/usr/lib/x86_64-linux-gnu
 

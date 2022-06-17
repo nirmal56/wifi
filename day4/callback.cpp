@@ -6,18 +6,14 @@
 
 class checker
 {
-    public:
-
+public:
     using fun_callback = std::function<void(GDBusProxy *proxy,
                                             gchar *sender_name,
                                             gchar *signal_name,
                                             GVariant *parameters,
-                                            gpointer user_data)>
-    fun_callback fncallback_;
+                                            gpointer user_data)>;
 
-    checker(fun_callback cb):fncallback_(std::move(cb)){
-
-    }
+    
     static const char *nm_state_to_string(NMState state)
     {
         switch (state)
@@ -71,6 +67,12 @@ class checker
 
 int main(int argc, char *argv[])
 {
+
+    checker::fun_callback() fncallback_;
+    checker(fun_callback cb) : fncallback_(std::move(cb)){
+
+    }
+
     checker chk;
     GMainLoop *loop;
     GError *error = NULL;

@@ -76,7 +76,7 @@ static void on_call(GDBusProxy *proxy,
     /* We are only interested in "StateChanged" signal */
     if (strcmp(signal_name, "StateChanged") == 0)
     {
-        g_print("total chils in parameter is:%d\n", g_variant_n_children(parameters));
+        g_print("total childs in parameter is:%d\n", g_variant_n_children(parameters));
         GVariant *tmp = g_variant_get_child_value(parameters, 0);
         new_state = g_variant_get_uint32(tmp);
         g_variant_unref(tmp);

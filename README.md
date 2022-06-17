@@ -123,3 +123,21 @@ https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/glib-GV
 https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/gvariant-text.html
 https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/gio/GDBusProxy.html
 https://libsoup.org/gio/GDBusProxy.html
+
+
+
+DAY-4
+
+working with cmake and callback function
+
+cmake not getting link of glib and network manager - cotinuousblocker
+
+now found the solution here(only for glib networkmanager not working this way) :https://gist.github.com/growlnx/ee2e7536472dbe3da4cbe4b49fb3f21d
+
+
+added network manager manually
+now errors are in h and cpp.
+
+
+
+static const char * error : https://stackoverflow.com/questions/1639154/how-to-declare-a-static-const-char-in-your-header-file

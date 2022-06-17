@@ -11,14 +11,19 @@ int main(){
     GDBusProxy *proxy;
 
     /* Initialize GType system */
-    g_type_init();
 
+    //REmove if def, if any error in initialization
+    #ifndef GLIB_VERSION_2_36
+    g_type_init ();
+    #endif
+    
     /* Monitor 'StateChanged' signal on 'org.freedesktop.NetworkManager' interface */
     g_print("Monitor NetworkManager's state\n");
     g_print("==============================\n");
 
-    flags = G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES | G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START;
+    flags = G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES;// | G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START;
     proxy = g_dbus_proxy_new_for_bus_sync(G_BUS_TYPE_SYSTEM,
+                                            // NULL,
                                           flags,
                                           NULL, /* GDBusInterfaceInfo */
                                           "org.freedesktop.NetworkManager",
