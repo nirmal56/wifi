@@ -3,29 +3,30 @@
 
 #include <gio/gio.h>
 #include <string.h>
+// #include<string>
 #include <NetworkManager.h>
 
-// class networkStatusCheck{
+class networkStatusCheck{
 
-//     public:
+    public:
 
-//     networkStatusCheck(){}
+    networkStatusCheck(){}
 
-//     void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);
-//     void tempToCheck(int,int);
-//     ~networkStatusCheck(){}
+    static char * nm_stat_to_string(NMState state);
+    static void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);
+    void tempToCheck(int,int);
+    ~networkStatusCheck(){}
 
-//     private:
+    private:
 
-//     std::string nm_stat_to_string(NMState state);
 
-// };
+};
 
-void on_call(GDBusProxy* ,gchar* ,gchar* ,GVariant* ,gpointer );
+// void on_call(GDBusProxy* ,gchar* ,gchar* ,GVariant* ,gpointer );
                     
-void tempToCheck(int,int);
+// void tempToCheck(int,int);
 
-char * nm_stat_to_string(NMState state);
+// char * nm_stat_to_string(NMState state);
 
 
 #endif // CHECK_STATUS_H

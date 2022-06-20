@@ -3,7 +3,7 @@
 // #define G_CALLBACK(on_call)		    	 
 
 int main(){
-    // networkStatusCheck netObj;
+    networkStatusCheck netobj;
     
     GMainLoop *loop;
     GError *error = NULL;
@@ -46,7 +46,7 @@ int main(){
     /* Connect to g-signal to receive signals from proxy (remote object) */
     g_signal_connect(proxy,
                     "g-signal",
-                    G_CALLBACK(on_call),
+                    G_CALLBACK(netobj.on_call),
                     // GCallback(((GCallback) (on_call))),//(proxy,sender_name,signal_name,variant,usr_data)),
                     NULL);
 

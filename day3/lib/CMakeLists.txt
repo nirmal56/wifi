@@ -22,7 +22,7 @@ set(mylib
     ${GLIB_LIBRARIES}
 )
 
-add_executable(networkStatus main.cpp checkstatus.cpp checkstatus.h)
+add_executable(networkStatus main.cpp checkstatus.cpp)
 
 target_link_libraries(networkStatus ${mylib})
 
