@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/networkStatus.dir/checkstatus.cpp.o"
   "CMakeFiles/networkStatus.dir/main.cpp.o"
   "networkStatus"
   "networkStatus.pdb"

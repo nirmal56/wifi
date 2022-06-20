@@ -141,3 +141,12 @@ now errors are in h and cpp.
 
 
 static const char * error : https://stackoverflow.com/questions/1639154/how-to-declare-a-static-const-char-in-your-header-file
+
+
+
+
+
+DAY - 6
+
+
+GCallback refference : https://www.freedesktop.org/software/gstreamer-sdk/data/docs/2012.5/gobject/gobject-Closures.html#GCallback

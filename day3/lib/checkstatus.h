@@ -1,24 +1,31 @@
+#ifndef CHECK_STATUS_H
+#define CHECK_STATUS_H
+
 #include <gio/gio.h>
 #include <string.h>
-#include <string>
 #include <NetworkManager.h>
 
-class networkStatusCheck{
+// class networkStatusCheck{
 
-    public:
+//     public:
 
-    networkStatusCheck(){}
+//     networkStatusCheck(){}
 
-    static void on_call(GDBusProxy *proxy,
-                        gchar *sender_name,
-                        gchar *signal_name,
-                        GVariant *parameters,
-                        gpointer user_data);
-    
-    ~networkStatusCheck(){}
+//     void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);
+//     void tempToCheck(int,int);
+//     ~networkStatusCheck(){}
 
-    private:
+//     private:
 
-    std::string nm_stat_to_string(NMState state);
+//     std::string nm_stat_to_string(NMState state);
 
-};
+// };
+
+void on_call(GDBusProxy ,gchar ,gchar ,GVariant ,gpointer );
+                    
+void tempToCheck(int,int);
+
+char * nm_stat_to_string(NMState state);
+
+
+#endif // CHECK_STATUS_H

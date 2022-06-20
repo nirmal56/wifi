@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/networkStatus.dir/main.cpp.o  -o networkStatus   -L/home/nirmal/user/wifi/day3/lib/src/libnm  -Wl,-rpath,/home/nirmal/user/wifi/day3/lib/src/libnm -lglib-2.0 -llibnm 
+/usr/bin/c++     CMakeFiles/networkStatus.dir/main.cpp.o CMakeFiles/networkStatus.dir/checkstatus.cpp.o  -o networkStatus  -lglib-2.0 -lnm -lgio-2.0 -lgobject-2.0 -lglib-2.0 -lnm -lgio-2.0 -lgobject-2.0 

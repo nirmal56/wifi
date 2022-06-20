@@ -7,30 +7,32 @@ set(MY_BASE ${PROJECT_SOURCE_DIR})
 set(MY_THIRD_PARTY ${PROJECT_SOURCE_DIR}/src)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GLIB REQUIRED glib-2.0 gio-2.0)
-
-# find_package(NetworkManager 0.9.8.0 REQUIRED)
-# link_directories(${LIBMODEMMANAGERQT_LIBRARY_DIRS} ${CMAKE_LIBRARY_PATH})
+pkg_check_modules(LIBNM REQUIRED libnm)
 
 include_directories(
     src/
     ${GLIB_INCLUDE_DIRS}
+    ${LIBNM_INCLUDE_DIRS}
 )
 
-include_directories(${MY_THIRD_PARTY}/glib-2.0)
-include_directories(${MY_THIRD_PARTY}/libnm)
-include_directories(${MY_THIRD_PARTY})
-link_directories(${MY_THIRD_PARTY}/libnm)
-
 set(mylib
-    glib-2.0 
-    libnm 
-    )
+    glib-2.0
+    nm
+    ${GLIB_LIBRARIES}
+)
 
-add_executable(networkStatus main.cpp)
+add_executable(networkStatus main.cpp checkstatus.cpp checkstatus.h)
+
 # target_link_directories(networkStatus PUBLIC ${MY_THIRD_PARTY})
+find_library(LIBNMLIB protobuf HINTS /usr/include/libnm)
+
 target_link_libraries(networkStatus ${mylib})
 
-
+# include_directories(${MY_THIRD_PARTY}/glib-2.0)
+# include_directories(${MY_THIRD_PARTY}/libnm)
+# include_directories(${MY_THIRD_PARTY})
+# include_directories($)
+# link_directories(${MY_THIRD_PARTY}/libnm)
 
 # some other methods that didn't work here but might work when dependencies like pkgconfig is not in between
 
@@ -60,7 +62,7 @@ target_link_libraries(networkStatus ${mylib})
 #
 # find_package(GLib2 REQUIRED)
 # find_package(PkgConfig REQUIRED)
-# # pkg_search_module(GLIB REQUIRED glib-2.0)
+# pkg_search_module(GLIB REQUIRED glib-2.0)
 
 # target_include_directories(networkStatus PRIVATE ${GLIB_INCLUDE_DIRS})
 # target_link_libraries(networkStatus INTERFACE ${GLIB_LDFLAGS})

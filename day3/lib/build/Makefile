@@ -123,6 +123,33 @@ networkStatus/fast:
 	$(MAKE) -f CMakeFiles/networkStatus.dir/build.make CMakeFiles/networkStatus.dir/build
 .PHONY : networkStatus/fast
 
+checkstatus.o: checkstatus.cpp.o
+
+.PHONY : checkstatus.o
+
+# target to build an object file
+checkstatus.cpp.o:
+	$(MAKE) -f CMakeFiles/networkStatus.dir/build.make CMakeFiles/networkStatus.dir/checkstatus.cpp.o
+.PHONY : checkstatus.cpp.o
+
+checkstatus.i: checkstatus.cpp.i
+
+.PHONY : checkstatus.i
+
+# target to preprocess a source file
+checkstatus.cpp.i:
+	$(MAKE) -f CMakeFiles/networkStatus.dir/build.make CMakeFiles/networkStatus.dir/checkstatus.cpp.i
+.PHONY : checkstatus.cpp.i
+
+checkstatus.s: checkstatus.cpp.s
+
+.PHONY : checkstatus.s
+
+# target to generate assembly for a file
+checkstatus.cpp.s:
+	$(MAKE) -f CMakeFiles/networkStatus.dir/build.make CMakeFiles/networkStatus.dir/checkstatus.cpp.s
+.PHONY : checkstatus.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... networkStatus"
+	@echo "... checkstatus.o"
+	@echo "... checkstatus.i"
+	@echo "... checkstatus.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
