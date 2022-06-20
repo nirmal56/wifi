@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(MY_BASE ${PROJECT_SOURCE_DIR})
 set(MY_THIRD_PARTY ${PROJECT_SOURCE_DIR}/src)
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GLIB REQUIRED glib-2.0 gio-2.0)
 pkg_check_modules(LIBNM REQUIRED libnm)
@@ -22,9 +23,6 @@ set(mylib
 )
 
 add_executable(networkStatus main.cpp checkstatus.cpp checkstatus.h)
-
-# target_link_directories(networkStatus PUBLIC ${MY_THIRD_PARTY})
-find_library(LIBNMLIB protobuf HINTS /usr/include/libnm)
 
 target_link_libraries(networkStatus ${mylib})
 
@@ -66,3 +64,5 @@ target_link_libraries(networkStatus ${mylib})
 
 # target_include_directories(networkStatus PRIVATE ${GLIB_INCLUDE_DIRS})
 # target_link_libraries(networkStatus INTERFACE ${GLIB_LDFLAGS})
+# target_link_directories(networkStatus PUBLIC ${MY_THIRD_PARTY})
+# find_library(LIBNMLIB protobuf HINTS /usr/include/libnm)

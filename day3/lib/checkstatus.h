@@ -21,7 +21,7 @@
 
 // };
 
-void on_call(GDBusProxy ,gchar ,gchar ,GVariant ,gpointer );
+void on_call(GDBusProxy* ,gchar* ,gchar* ,GVariant* ,gpointer );
                     
 void tempToCheck(int,int);
 

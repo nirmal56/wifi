@@ -1,6 +1,6 @@
-#include<iostream>
 #include "checkstatus.h"
 #include"gio/gio.h"
+// #define G_CALLBACK(on_call)		    	 
 
 int main(){
     // networkStatusCheck netObj;
@@ -17,9 +17,9 @@ int main(){
     /* Initialize GType system */
 
     //REmove if def, if any error in initialization
-    // #ifndef GLIB_VERSION_2_36
+    #ifndef GLIB_VERSION_2_36
     g_type_init ();
-    // #endif
+    #endif
     
     /* Monitor 'StateChanged' signal on 'org.freedesktop.NetworkManager' interface */
     g_print("Monitor NetworkManager's state\n");
@@ -46,7 +46,8 @@ int main(){
     /* Connect to g-signal to receive signals from proxy (remote object) */
     g_signal_connect(proxy,
                     "g-signal",
-                    GCallback((G_Callback())on_call),//(proxy,sender_name,signal_name,variant,usr_data)),
+                    G_CALLBACK(on_call),
+                    // GCallback(((GCallback) (on_call))),//(proxy,sender_name,signal_name,variant,usr_data)),
                     NULL);
 
     /* Run main loop */
