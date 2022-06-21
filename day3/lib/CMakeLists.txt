@@ -3,8 +3,8 @@ project(networkStatus)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(MY_BASE ${PROJECT_SOURCE_DIR})
-set(MY_THIRD_PARTY ${PROJECT_SOURCE_DIR}/src)
+# set(MY_BASE ${PROJECT_SOURCE_DIR})
+# set(MY_THIRD_PARTY ${PROJECT_SOURCE_DIR}/src)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GLIB REQUIRED glib-2.0 gio-2.0)
