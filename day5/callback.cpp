@@ -10,10 +10,8 @@ public:
     {
         return f();
     }
-    // std::string Init1(std::function<std::string(std::string mydata)> fun)
-    // {
-    //     return fun(std::string);
-    // }
+    std::function<void(const std::string mydata)> fun;
+
 };
 
 class CLoggersInfra
@@ -32,7 +30,7 @@ public:
         return member;
     }
 
-    std::string withargument(std::string mydata)
+    std::string withargument(std::string &mydata)
     {
         return mydata;
     }
@@ -60,7 +58,9 @@ int main()
     std::cout << instance.Init(callback3) << "\n";
 
     RedundencyManager redobj;
+    const std::string mydata = "mydata from arguments\n";
 
-    // auto callback4 = std::bind(&CLoggersInfra::withargument, CLoggersInfra());
+    auto callback4 = std::bind(&CLoggersInfra::withargument, CLoggersInfra());
     // std::cout<<redobj.Init1(callback4("abc")) << "\n";
+
 }
