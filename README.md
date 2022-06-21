@@ -150,3 +150,9 @@ DAY - 6
 
 
 GCallback refference : https://www.freedesktop.org/software/gstreamer-sdk/data/docs/2012.5/gobject/gobject-Closures.html#GCallback
+
+DAY - 7
+
+
+NETLINK MAN PAGE:
+https://man7.org/linux/man-pages/man7/netdevice.7.html
