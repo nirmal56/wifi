@@ -6,7 +6,7 @@ class RedundencyManager // incl. Typo ;-)
 {
 
     using FsEventCallabck = std::function<std::string(int data)>;
-    using callback2 = std::function<std::string(int tada,int taadaa)>;
+    using callback2 = std::function<std::string(int tada, int taadaa)>;
 
 public:
     // std::function<return_type(list of argument_type(s))>
@@ -14,9 +14,9 @@ public:
     {
         return f(data);
     }
-    std::string Init(callback2 f, int data,int tada)
+    std::string Init(callback2 f, int data, int tada)
     {
-        return f(data,tada);
+        return f(data, tada);
     }
 };
 
@@ -35,7 +35,8 @@ public:
     {
         return member + " " + std::to_string(data);
     }
-    std::string twoargfun(int data, int dataa){
+    std::string twoargfun(int data, int dataa)
+    {
         return member + " " + std::to_string(dataa) + " " + std::to_string(data);
     }
 };
@@ -58,7 +59,10 @@ int main()
 
     // Class instance is passed to std::bind as second argument.
     // (heed that I call the constructor of CLoggersInfra)
-    auto callback3 = std::bind(&CLoggersInfra::twoargfun,
-                               CLoggersInfra(),std::placeholders::_1, std::placeholders::_2);
+
+    auto callback = std::bind(&CLoggersInfra::NonStaticRedundencyManagerCallBack,CLoggersInfra(),std::placeholders::_1);
+    std::cout<<instance.Init(callback,5)<<"\n";
+
+    auto callback3 = std::bind(&CLoggersInfra::twoargfun, CLoggersInfra(), std::placeholders::_1, std::placeholders::_2);
     std::cout << instance.Init(callback3, 1, 2) << "\n";
 }
