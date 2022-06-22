@@ -1,4 +1,4 @@
-# Install script for directory: /home/nirmal/user/wifi/day3/lib
+# Install script for directory: /home/nirmal/user/wifi/day6/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/nirmal/user/wifi/day3/lib/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/nirmal/user/wifi/day6/lib/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

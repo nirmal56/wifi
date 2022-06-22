@@ -1,5 +1,6 @@
 #include "checkstatus.h"
 #include"gio/gio.h"
+#include<iostream>
 // #define G_CALLBACK(on_call)		    	 
 
 int main(){
@@ -8,11 +9,12 @@ int main(){
     GMainLoop *loop;
     GError *error = NULL;
     GDBusProxyFlags flags;
-    GDBusProxy *proxy;
-    gchar *sender_name;
-    gchar *signal_name;
-    GVariant *variant;
+    GDBusProxy *proxy; 
+    gchar* sender_name;
+    gchar* signal_name;
+    GVariant* variant;
     gpointer usr_data;
+
 
     /* Initialize GType system */
 
@@ -43,10 +45,15 @@ int main(){
         return -1;
     }
 
+    //binding callback
+    auto instance = networkStatusCheck();
+    auto Callback = std::bind(&networkStatusCheck::on_call, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5);
+    // instance.Init(Callback, proxy, sender_name,signal_name,variant,usr_data);          
     /* Connect to g-signal to receive signals from proxy (remote object) */
     g_signal_connect(proxy,
                     "g-signal",
-                    G_CALLBACK(netobj.on_call),
+                    // G_CALLBACK(netobj.on_call),
+                    instance.Init(Callback,proxy,sender_name,signal_name,variant,usr_data),
                     // GCallback(((GCallback) (on_call))),//(proxy,sender_name,signal_name,variant,usr_data)),
                     NULL);
 

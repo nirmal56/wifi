@@ -1,5 +1,12 @@
 #include "checkstatus.h"
 
+// using networkStatusCheck::callback = std::function<void(GDBusProxy* proxy, gchar* sender_name, gchar* signal_name, GVariant* variant, gpointer usr_data)>;
+
+void networkStatusCheck::Init(callback cb,GDBusProxy* proxy, gchar* sender_name, gchar* signal_name, GVariant* variant, gpointer usr_data){
+    g_print("Init called\n");
+    return cb(proxy,sender_name,signal_name,variant,usr_data);
+}
+
 char * networkStatusCheck::nm_stat_to_string(NMState state){
     switch (state)
     {

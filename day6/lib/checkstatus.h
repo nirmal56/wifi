@@ -3,22 +3,24 @@
 
 #include <gio/gio.h>
 #include <string.h>
+#include <functional>
 // #include<string>
 #include <NetworkManager.h>
 
 class networkStatusCheck{
-
-    public:
-
-    networkStatusCheck(){}
-
-    static char * nm_stat_to_string(NMState state);
-    static void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);
-    void tempToCheck(int,int);
-    ~networkStatusCheck(){}
-
     private:
 
+
+    public:
+    using callback = std::function<void(GDBusProxy* , gchar* , gchar* , GVariant* , gpointer )>;
+    networkStatusCheck(){}
+
+    void Init(callback ,GDBusProxy* , gchar* , gchar* , GVariant* , gpointer );
+
+    static char * nm_stat_to_string(NMState);
+    static void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);
+    
+    ~networkStatusCheck(){}
 
 };
 

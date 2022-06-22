@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nirmal/user/wifi/day3/lib/checkstatus.cpp" "/home/nirmal/user/wifi/day3/lib/build/CMakeFiles/networkStatus.dir/checkstatus.cpp.o"
-  "/home/nirmal/user/wifi/day3/lib/main.cpp" "/home/nirmal/user/wifi/day3/lib/build/CMakeFiles/networkStatus.dir/main.cpp.o"
+  "/home/nirmal/user/wifi/day6/lib/checkstatus.cpp" "/home/nirmal/user/wifi/day6/lib/build/CMakeFiles/networkStatus.dir/checkstatus.cpp.o"
+  "/home/nirmal/user/wifi/day6/lib/main.cpp" "/home/nirmal/user/wifi/day6/lib/build/CMakeFiles/networkStatus.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
