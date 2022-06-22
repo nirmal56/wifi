@@ -156,3 +156,12 @@ DAY - 7
 
 NETLINK MAN PAGE:
 https://man7.org/linux/man-pages/man7/netdevice.7.html
+
+
+callback &netlink
+
+day - 8 
+
+all types of callback working
+
+now using custom callback instead of gcallbacks
