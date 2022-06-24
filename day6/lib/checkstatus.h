@@ -17,8 +17,10 @@ class networkStatusCheck{
 
     void Init(callback ,GDBusProxy* , gchar* , gchar* , GVariant* , gpointer );
 
-    static char * nm_stat_to_string(NMState);
-    static void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);
+    // typedef void  (*GCallback)  (void);
+    
+    char * nm_stat_to_string(NMState);
+    void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);
     
     ~networkStatusCheck(){}
 

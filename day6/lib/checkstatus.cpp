@@ -4,8 +4,12 @@
 
 void networkStatusCheck::Init(callback cb,GDBusProxy* proxy, gchar* sender_name, gchar* signal_name, GVariant* variant, gpointer usr_data){
     g_print("Init called\n");
-    return cb(proxy,sender_name,signal_name,variant,usr_data);
+     cb(proxy,sender_name,signal_name,variant,usr_data);
 }
+
+// void * networkStatusCheck::GCallback(callback cb){
+//     return cb();
+// }
 
 char * networkStatusCheck::nm_stat_to_string(NMState state){
     switch (state)
