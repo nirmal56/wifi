@@ -45,15 +45,16 @@ int main(){
     }
 
     //binding callback
-    auto instance = networkStatusCheck();//this->instance
-    auto Callback = std::bind(&networkStatusCheck::on_call,this,  std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5);
+    // auto instance = networkStatusCheck();//this->instance
+    networkStatusCheck instance;
+    //this pointer is not working so used addressof() method
+    auto Callback = std::bind(&networkStatusCheck::on_call, &instance,  std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5);
     // instance.Init(Callback, proxy, sender_name,signal_name,variant,usr_data);          
     /* Connect to g-signal to receive signals from proxy (remote object) */
+    // Callback;
     g_signal_connect(proxy,
                     "g-signal",
-                    GCallback((((instance.Init(Callback,proxy,sender_name,signal_name,variant,usr_data))))),//)))),
-                    // GCallback((((Callback,proxy,sender_name,signal_name,variant,usr_data)))),
-                    // GCallback(((GCallback) (instance.on_call))),//(proxy,sender_name,signal_name,variant,usr_data)),
+                    GCallback(&Callback),
                     NULL);
 
     /* Run main loop */
@@ -63,3 +64,5 @@ int main(){
     g_object_unref(proxy);
     return 0;
 }
+                    // GCallback((((Callback,proxy,sender_name,signal_name,variant,usr_data)))),
+                    // GCallback(((GCallback) (instance.on_call))),//(proxy,sender_name,signal_name,variant,usr_data)),

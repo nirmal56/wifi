@@ -46,14 +46,12 @@ int main(){
 
     //binding callback
     auto instance = networkStatusCheck();//this->instance
-    auto Callback = std::bind(&networkStatusCheck::on_call,this,  std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5);
+    instance.execute(bind(&networkStatusCheck::on_call,this,proxy,sender_name,signal_name,variant,usr_data));
     // instance.Init(Callback, proxy, sender_name,signal_name,variant,usr_data);          
     /* Connect to g-signal to receive signals from proxy (remote object) */
     g_signal_connect(proxy,
                     "g-signal",
-                    GCallback((((instance.Init(Callback,proxy,sender_name,signal_name,variant,usr_data))))),//)))),
-                    // GCallback((((Callback,proxy,sender_name,signal_name,variant,usr_data)))),
-                    // GCallback(((GCallback) (instance.on_call))),//(proxy,sender_name,signal_name,variant,usr_data)),
+                    GCallback((instance->execute([this]{on_call}))),//(proxy,sender_name,signal_name,variant,usr_data)),
                     NULL);
 
     /* Run main loop */

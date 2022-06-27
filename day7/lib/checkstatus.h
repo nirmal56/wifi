@@ -12,12 +12,8 @@ class networkStatusCheck{
 
 
     public:
-    using callback = std::function<void(GDBusProxy* , gchar* , gchar* , GVariant* , gpointer )>;
+    execute(std::function<void(GDBusProxy* , gchar* , gchar* , GVariant* , gpointer )>callback) 
     networkStatusCheck(){}
-
-    void Init(callback ,GDBusProxy* , gchar* , gchar* , GVariant* , gpointer );
-
-    // typedef void  (*GCallback)  (void);
     
     char * nm_stat_to_string(NMState);
     void on_call(GDBusProxy*, gchar*, gchar*, GVariant*, gpointer);

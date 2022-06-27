@@ -2,10 +2,7 @@
 
 // using networkStatusCheck::callback = std::function<void(GDBusProxy* proxy, gchar* sender_name, gchar* signal_name, GVariant* variant, gpointer usr_data)>;
 
-void networkStatusCheck::Init(callback cb,GDBusProxy* proxy, gchar* sender_name, gchar* signal_name, GVariant* variant, gpointer usr_data){
-    g_print("Init called\n");
-     cb(proxy,sender_name,signal_name,variant,usr_data);
-}
+
 
 // void * networkStatusCheck::GCallback(callback cb){
 //     return cb();
