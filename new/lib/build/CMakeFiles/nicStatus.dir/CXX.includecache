@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nirmal/user/wifi/new/lib/main.cpp
+rtnetlink.h
+/home/nirmal/user/wifi/new/lib/rtnetlink.h
+iostream
+-
+
+/home/nirmal/user/wifi/new/lib/rtnetlink.cpp
+rtnetlink.h
+/home/nirmal/user/wifi/new/lib/rtnetlink.h
+
+/home/nirmal/user/wifi/new/lib/rtnetlink.h
+asm/types.h
+-
+sys/socket.h
+-
+unistd.h
+-
+errno.h
+-
+stdio.h
+-
+string.h
+-
+net/if.h
+-
+netinet/in.h
+-
+linux/netlink.h
+-
+linux/rtnetlink.h
+-
+
