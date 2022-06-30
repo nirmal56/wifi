@@ -37,11 +37,6 @@ public:
     int open_netlink();
 
     /*
-     *read NIC state
-     */
-    int read_event(int sockint, int (*msg_handler)(struct sockaddr_nl *, struct nlmsghdr *));
-
-    /*
     *read+print for non static callback
     */
     int read_print(int sockint, struct sockaddr_nl *, struct nlmsghdr *);

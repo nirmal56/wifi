@@ -1,0 +1,3 @@
+/home/nirmal/user/wifi/new/lib/build/CMakeFiles/rebuild_cache.dir
+/home/nirmal/user/wifi/new/lib/build/CMakeFiles/edit_cache.dir
+/home/nirmal/user/wifi/new/lib/build/CMakeFiles/nicStatus.dir
