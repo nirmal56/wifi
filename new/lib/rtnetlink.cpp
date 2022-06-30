@@ -5,9 +5,7 @@ nicMonitor::nicMonitor()
 
 int nicMonitor::Init(callback cb, int sockid, struct sockaddr_nl *sockaddr, struct nlmsghdr *nlms)
 {
-    // printf("Init called\n");
-    // cb(proxy, sender_name, signal_name, variant, usr_data);
-    return cb(sockid,sockaddr,nlms);
+    return cb(sockid, sockaddr, nlms);
 }
 
 int nicMonitor::open_netlink()
@@ -28,8 +26,8 @@ int nicMonitor::open_netlink()
     return sock;
 }
 
-
-int nicMonitor::read_print(int sockint, struct sockaddr_nl *nl, struct nlmsghdr *msghdr){
+int nicMonitor::read_print(int sockint, struct sockaddr_nl *nl, struct nlmsghdr *msghdr)
+{
     int status;
     int ret = 0;
     char buf[4096];

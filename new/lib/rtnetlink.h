@@ -23,13 +23,16 @@ public:
      *constructor
      */
     nicMonitor();
-    
+
     /*
-    *setting up for callback
-    */
+     *setting up for callback
+     */
     using callback = std::function<int(int, struct sockaddr_nl *, struct nlmsghdr *)>;
 
-    int Init(callback,int, struct sockaddr_nl *, struct nlmsghdr *);
+    /*
+     *init for bind
+     */
+    int Init(callback, int, struct sockaddr_nl *, struct nlmsghdr *);
 
     /*
      *opens netlink
@@ -37,8 +40,8 @@ public:
     int open_netlink();
 
     /*
-    *read+print for non static callback
-    */
+     *read+print event for non static callback
+     */
     int read_print(int sockint, struct sockaddr_nl *, struct nlmsghdr *);
 
     /*
