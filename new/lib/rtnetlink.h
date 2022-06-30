@@ -11,6 +11,7 @@
 #include <netinet/in.h>
 #include <linux/netlink.h>
 #include <linux/rtnetlink.h>
+#include <functional>
 
 #define MYPROTO NETLINK_ROUTE
 #define MYMGRP RTMGRP_IPV4_ROUTE
@@ -22,6 +23,13 @@ public:
      *constructor
      */
     nicMonitor();
+    
+    /*
+    *setting up for callback
+    */
+    using callback = std::function<int(int, struct sockaddr_nl *, struct nlmsghdr *)>;
+
+    int Init(callback,int, struct sockaddr_nl *, struct nlmsghdr *);
 
     /*
      *opens netlink
@@ -32,6 +40,11 @@ public:
      *read NIC state
      */
     int read_event(int sockint, int (*msg_handler)(struct sockaddr_nl *, struct nlmsghdr *));
+
+    /*
+    *read+print for non static callback
+    */
+    int read_print(int sockint, struct sockaddr_nl *, struct nlmsghdr *);
 
     /*
      *print NIC state
@@ -49,4 +62,4 @@ public:
     ~nicMonitor();
 };
 
-#endif //RTNETLINK_H_
+#endif // RTNETLINK_H_
