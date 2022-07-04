@@ -93,7 +93,6 @@ int nicMonitor::netlink_link_state(struct sockaddr_nl *nl, struct nlmsghdr *msg)
     int len;
     struct ifinfomsg *ifi;
     char ifname[1024];
-
     nl = nl;
 
     ifi = (struct ifinfomsg *)NLMSG_DATA(msg);
