@@ -20,7 +20,6 @@ int nicMonitor::open_netlink()
     addr.nl_family = AF_NETLINK;
     addr.nl_pid = getpid();
     addr.nl_groups = RTMGRP_LINK | RTMGRP_IPV4_IFADDR | RTMGRP_IPV6_IFADDR;
-    //    addr.nl_groups = RTMGRP_LINK;
     if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         return -1;
     return sock;
@@ -93,45 +92,67 @@ int nicMonitor::netlink_link_state(struct sockaddr_nl *nl, struct nlmsghdr *msg)
 {
     int len;
     struct ifinfomsg *ifi;
+    char ifname[1024];
 
     nl = nl;
 
     ifi = (struct ifinfomsg *)NLMSG_DATA(msg);
+    if_indextoname(ifi->ifi_index, ifname);
 
-    printf("netlink_link_state: Link %s\n", (ifi->ifi_flags & IFF_UP) ? "Up" : "Down");
+    printf("netlink_link_state: Link %s\n",
+           /*(ifi->ifi_flags & IFF_RUNNING)?"Up":"Down");*/
+           (ifi->ifi_flags & IFF_UP) ? "Up" : "Down");
+    // printf("netlink_link_state: Link %s %s\n",
+    //        /*(ifi->ifi_flags & IFF_RUNNING)?"Up":"Down");*/
+    //        ifname, (ifi->ifi_flags & IFF_UP) ? "Up" : "Down");
     return 0;
 }
 
 int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
 {
+    struct ifinfomsg *ifi = (struct ifinfomsg *)NLMSG_DATA(msg);
+    struct ifaddrmsg *ifa = (struct ifaddrmsg *)NLMSG_DATA(msg);
+    char ifname[1024];
     nicMonitor mtr;
     switch (msg->nlmsg_type)
     {
-    case RTM_NEWADDR:
-        printf("msg_handler: RTM_NEWADDR\n");
-        mtr.netlink_link_state(nl, msg);
-        break;
+    // case RTM_NEWADDR:
+    //     if_indextoname(ifi->ifi_index, ifname);
+    //     printf("msg_handler: RTM_NEWADDR\n");
+    //     printf("msg_handler: Interface_name:%s\n", ifname);
+    //     mtr.netlink_link_state(nl, msg);
+    //     break;
     case RTM_DELADDR:
+        if_indextoname(ifi->ifi_index, ifname);
         printf("msg_handler: RTM_DELADDR\n");
+        printf("msg_handler: Interface_name:%s\n", ifname);
         mtr.netlink_link_state(nl, msg);
-        break;
-    case RTM_NEWROUTE:
-        printf("msg_handler: RTM_NEWROUTE\n");
-        break;
-    case RTM_DELROUTE:
-        printf("msg_handler: RTM_DELROUTE\n");
         break;
     case RTM_NEWLINK:
+        if_indextoname(ifi->ifi_index, ifname);
         printf("msg_handler: RTM_NEWLINK\n");
+        printf("msg_handler: Interface_name:%s\n", ifname);
         mtr.netlink_link_state(nl, msg);
         break;
-    case RTM_DELLINK:
-        printf("msg_handler: RTM_DELLINK\n");
-        break;
-    default:
-        printf("msg_handler: Unknown netlink nlmsg_type %d\n",
-               msg->nlmsg_type);
-        break;
+    // case RTM_NEWROUTE:
+    //     if_indextoname(ifi->ifi_index, ifname);
+    //     printf("msg_handler: RTM_NEWROUTE\n");
+    //     printf("msg_handler: Interface_name:%s\n", ifname);
+    //     break;
+    // case RTM_DELROUTE:
+    //     if_indextoname(ifi->ifi_index, ifname);
+    //     printf("msg_handler: RTM_DELROUTE\n");
+    //     printf("msg_handler: Interface_name:%s\n", ifname);
+    //     break;
+    // case RTM_DELLINK:
+    //     if_indextoname(ifi->ifi_index, ifname);
+    //     printf("msg_handler: RTM_DELLINK\n");
+    //     printf("msg_handler: Interface_name:%s\n", ifname);
+    //     break;
+    // default:
+        //     printf("msg_handler: Unknown netlink nlmsg_type %d\n",
+        //            msg->nlmsg_type);
+        //     break;
     }
     return 0;
 }
@@ -139,3 +160,81 @@ int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
 nicMonitor::~nicMonitor()
 {
 }
+
+// old msg_handler without interface name
+
+// int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
+// {
+//     nicMonitor mtr;
+//     switch (msg->nlmsg_type)
+//     {
+//     // case RTM_NEWADDR:
+//     //     printf("msg_handler: RTM_NEWADDR\n");
+//     //     mtr.netlink_link_state(nl, msg);
+//     //     break;
+//     case RTM_DELADDR:
+//         printf("msg_handler: RTM_DELADDR\n");
+//         mtr.netlink_link_state(nl, msg);
+//         break;
+//     case RTM_NEWLINK:
+//         printf("msg_handler: RTM_NEWLINK\n");
+//         mtr.netlink_link_state(nl, msg);
+//         break;
+//     // case RTM_NEWROUTE:
+//     //     printf("msg_handler: RTM_NEWROUTE\n");
+//     //     break;
+//     // case RTM_DELROUTE:
+//     //     printf("msg_handler: RTM_DELROUTE\n");
+//     //     break;
+//     // case RTM_DELLINK:
+//     //     printf("msg_handler: RTM_DELLINK\n");
+//     //     break;
+//     // default:
+//     //     printf("msg_handler: Unknown netlink nlmsg_type %d\n",
+//     //            msg->nlmsg_type);
+//     //     break;
+//     }
+//     return 0;
+// }
+
+// old message_handler completed
+
+// Some other netlink_state.
+
+//    printf("netlink_link_state: family: %d\n", ifi->ifi_family);
+//    if(ifi->ifi_family == AF_INET)
+//    {
+//         printf("Link index: %d Flags: (0x%x) ",
+//                ifi->ifi_index, ifi->ifi_flags);
+//         if(ifi->ifi_flags & IFF_UP)
+//             printf("IFF_UP ");
+//         if(ifi->ifi_flags & IFF_BROADCAST)
+//             printf("IFF_BROADCAST ");
+//         if(ifi->ifi_flags & IFF_DEBUG)
+//             printf("IFF_DEBUG ");
+//         if(ifi->ifi_flags & IFF_LOOPBACK)
+//             printf("IFF_LOOPBACK ");
+//         if(ifi->ifi_flags & IFF_POINTOPOINT)
+//             printf("IFF_POINTOPOINT ");
+//         if(ifi->ifi_flags & IFF_NOTRAILERS)
+//             printf("IFF_NOTRAILERS ");
+//         if(ifi->ifi_flags & IFF_RUNNING)
+//             printf("IFF_RUNNING ");
+//         if(ifi->ifi_flags & IFF_NOARP)
+//             printf("IFF_NOARP ");
+//         if(ifi->ifi_flags & IFF_PROMISC)
+//             printf("IFF_PROMISC ");
+//         if(ifi->ifi_flags & IFF_ALLMULTI)
+//             printf("IFF_ALLMULTI ");
+//         if(ifi->ifi_flags & IFF_MASTER)
+//             printf("IFF_MASTER ");
+//         if(ifi->ifi_flags & IFF_SLAVE)
+//             printf("IFF_SLAVE ");
+//         if(ifi->ifi_flags & IFF_MULTICAST)
+//             printf("IFF_MULTICAST ");
+//         if(ifi->ifi_flags & IFF_PORTSEL)
+//             printf("IFF_PORTSEL ");
+//         if(ifi->ifi_flags & IFF_AUTOMEDIA)
+//             printf("IFF_AUTOMEDIA ");
+//         printf("\n");
+//    }
