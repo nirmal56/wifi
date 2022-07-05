@@ -1,4 +1,5 @@
 #include "rtnetlink.h"
+#include<iostream>
 nicMonitor::nicMonitor()
 {
 }
@@ -113,47 +114,89 @@ int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
     struct ifaddrmsg *ifa = (struct ifaddrmsg *)NLMSG_DATA(msg);
     char ifname[1024];
     nicMonitor mtr;
+
+    //for json payload
+    rapidjson::StringBuffer buffer;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+
+    //for timestamp
+    auto timestamp = std::chrono::system_clock::now();
+
+    writer.StartObject();
+
+    writer.Key("timestamp:");
+    writer.Int64(std::chrono::duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count());
+
     switch (msg->nlmsg_type)
     {
-    // case RTM_NEWADDR:
-    //     if_indextoname(ifi->ifi_index, ifname);
-    //     printf("msg_handler: RTM_NEWADDR\n");
-    //     printf("msg_handler: Interface_name:%s\n", ifname);
-    //     mtr.netlink_link_state(nl, msg);
-    //     break;
-    case RTM_DELADDR:
-        if_indextoname(ifi->ifi_index, ifname);
-        printf("msg_handler: RTM_DELADDR\n");
-        printf("msg_handler: Interface_name:%s\n", ifname);
-        mtr.netlink_link_state(nl, msg);
-        break;
-    case RTM_NEWLINK:
-        if_indextoname(ifi->ifi_index, ifname);
-        printf("msg_handler: RTM_NEWLINK\n");
-        printf("msg_handler: Interface_name:%s\n", ifname);
-        mtr.netlink_link_state(nl, msg);
-        break;
-    // case RTM_NEWROUTE:
-    //     if_indextoname(ifi->ifi_index, ifname);
-    //     printf("msg_handler: RTM_NEWROUTE\n");
-    //     printf("msg_handler: Interface_name:%s\n", ifname);
-    //     break;
-    // case RTM_DELROUTE:
-    //     if_indextoname(ifi->ifi_index, ifname);
-    //     printf("msg_handler: RTM_DELROUTE\n");
-    //     printf("msg_handler: Interface_name:%s\n", ifname);
-    //     break;
-    // case RTM_DELLINK:
-    //     if_indextoname(ifi->ifi_index, ifname);
-    //     printf("msg_handler: RTM_DELLINK\n");
-    //     printf("msg_handler: Interface_name:%s\n", ifname);
-    //     break;
-    // default:
+        case RTM_DELADDR:
+            if_indextoname(ifi->ifi_index, ifname);
+            printf("msg_handler: RTM_DELADDR\n");
+            printf("msg_handler: Interface_name:%s\n", ifname);
+            mtr.netlink_link_state(nl, msg);
+
+            writer.Key("Interface Name:");
+            writer.String(ifname);
+            break;
+        case RTM_NEWLINK:
+            if_indextoname(ifi->ifi_index, ifname);
+            printf("msg_handler: RTM_NEWLINK\n");
+            printf("msg_handler: Interface_name:%s\n", ifname);
+            mtr.netlink_link_state(nl, msg);
+
+            writer.Key("Interface Name:");
+            writer.String(ifname);
+            break;
+
+        // case RTM_NEWADDR:
+        //     if_indextoname(ifi->ifi_index, ifname);
+        //     printf("msg_handler: RTM_NEWADDR\n");
+        //     printf("msg_handler: Interface_name:%s\n", ifname);
+        //     mtr.netlink_link_state(nl, msg);
+        //     break;
+
+        // case RTM_NEWROUTE:
+        //     if_indextoname(ifi->ifi_index, ifname);
+        //     printf("msg_handler: RTM_NEWROUTE\n");
+        //     printf("msg_handler: Interface_name:%s\n", ifname);
+        //     break;
+
+        // case RTM_DELROUTE:
+        //     if_indextoname(ifi->ifi_index, ifname);
+        //     printf("msg_handler: RTM_DELROUTE\n");
+        //     printf("msg_handler: Interface_name:%s\n", ifname);
+        //     break;
+
+        // case RTM_DELLINK:
+        //     if_indextoname(ifi->ifi_index, ifname);
+        //     printf("msg_handler: RTM_DELLINK\n");
+        //     printf("msg_handler: Interface_name:%s\n", ifname);
+        //     break;
+
+        // default:
         //     printf("msg_handler: Unknown netlink nlmsg_type %d\n",
         //            msg->nlmsg_type);
         //     break;
     }
+    writer.EndObject();
+    std::cout<<buffer.GetString()<<std::endl;
     return 0;
+}
+
+std::string toJson(std::string key, std::string value, bool close = false)
+{
+    rapidjson::StringBuffer buffer;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+
+    writer.StartObject();
+    writer.Key(key.c_str());
+    writer.String(value.c_str());
+
+    if (!close)
+    {
+        writer.EndObject();
+    }
+    return buffer.GetString();
 }
 
 nicMonitor::~nicMonitor()

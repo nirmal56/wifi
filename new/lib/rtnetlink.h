@@ -14,6 +14,8 @@
 #include <linux/rtnetlink.h>
 
 #include <functional>
+#include <string>
+#include <chrono>
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 
@@ -30,7 +32,7 @@ public:
 
     /*
      *setting up for callback
-     *Parameters:
+     *Parameters:void
      *Parameters:int, struct sockaddr_nl*, sturct nlmsghdr *
      */
     using callback = std::function<int(int, struct sockaddr_nl *, struct nlmsghdr *)>;
@@ -44,7 +46,7 @@ public:
 
     /*
      *opens netlink
-     *Parameters:
+     *Parameters:void
      *Returns: socket integer
      */
     int open_netlink();
@@ -65,8 +67,17 @@ public:
 
     /*
      *message handler - callback function(function pointer)
+     *Parameters: struct sockaddr_nl *, struct nlmsghdr *
+     *Returns:0
      */
     static int msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg);
+
+    /*
+     *tojson - converts key and value in json
+     *Parameters: std::string key,std::string value
+     *returns:json  in std::string  format
+     */
+    std::string toJson(std::string key,std::string value);
 
     /*
      *destructer
