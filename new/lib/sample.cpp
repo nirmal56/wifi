@@ -1,16 +1,16 @@
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 #include <iostream>
-
-using namespace rapidjson;
+ 
+// using namespace rapidjson;
 using namespace std;
 
 int main()
 {
 
-    StringBuffer w;
+    rapidjson::StringBuffer w;
 
-    Writer<StringBuffer> writer(w);
+    rapidjson::Writer<rapidjson::StringBuffer> writer(w);
 
     std::cout << "Example_Output : Using Writer() Function \n\t";
 
@@ -29,6 +29,9 @@ int main()
     writer.EndObject();
 
     cout << w.GetString() << endl;
+
+
+    
 
     return 0;
 }
