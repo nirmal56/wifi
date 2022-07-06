@@ -1,21 +1,25 @@
 #ifndef RTNETLINK_H_
 #define RTNETLINK_H_
-
+//for  getting events
 #include <asm/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#include <errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <net/if.h>
 #include <netinet/in.h>
-
 #include <linux/netlink.h>
 #include <linux/rtnetlink.h>
-
+//to convert in ip
+#include <arpa/inet.h>
+#include <sys/ioctl.h>
+//for callback
+#include <ifaddrs.h>
 #include <functional>
 #include <string>
+//for timestamp
 #include <chrono>
+//for json
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 
@@ -77,7 +81,14 @@ public:
      *Parameters: std::string key,std::string value
      *returns:json  in std::string  format
      */
-    std::string toJson(std::string key,std::string value);
+    std::string toJson(std::string key, std::string value);
+
+    /*
+     *nametoIP - converts interface naem to its ipaddress
+     *Parameters : char * interface name
+     *returns : char * ip address
+     */
+    char *nametoIP(char *);
 
     /*
      *destructer

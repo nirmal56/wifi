@@ -113,6 +113,7 @@ int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
     struct ifinfomsg *ifi = (struct ifinfomsg *)NLMSG_DATA(msg);
     struct ifaddrmsg *ifa = (struct ifaddrmsg *)NLMSG_DATA(msg);
     char ifname[1024];
+    std::string ip;
     nicMonitor mtr;
 
     //for json payload
@@ -131,21 +132,28 @@ int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
     {
         case RTM_DELADDR:
             if_indextoname(ifi->ifi_index, ifname);
+            ip=mtr.nametoIP(ifname);
+
             printf("msg_handler: RTM_DELADDR\n");
-            printf("msg_handler: Interface_name:%s\n", ifname);
+            printf("msg_handler: Interface_name:%s Interface IP:%s\n", ifname,ip.c_str());
             mtr.netlink_link_state(nl, msg);
 
             writer.Key("Interface Name:");
             writer.String(ifname);
+            writer.Key("IP Addess");
+            writer.String(ip.c_str());
             break;
         case RTM_NEWLINK:
             if_indextoname(ifi->ifi_index, ifname);
+            ip=mtr.nametoIP(ifname);
             printf("msg_handler: RTM_NEWLINK\n");
-            printf("msg_handler: Interface_name:%s\n", ifname);
+            printf("msg_handler: Interface_name:%s Interface IP:%s\n", ifname,ip.c_str());
             mtr.netlink_link_state(nl, msg);
 
             writer.Key("Interface Name:");
             writer.String(ifname);
+            writer.Key("IP Addess");
+            writer.String(ip.c_str());
             break;
 
         // case RTM_NEWADDR:
@@ -198,6 +206,20 @@ std::string toJson(std::string key, std::string value, bool close = false)
     }
     return buffer.GetString();
 }
+
+char* nicMonitor::nametoIP(char * name)
+{
+    struct ifreq ifr;
+    int sock_id = socket(AF_INET, SOCK_DGRAM, 0);
+
+    ifr.ifr_addr.sa_family = AF_INET;
+    strncpy(ifr.ifr_name, name, IFNAMSIZ -1);
+    ioctl(sock_id, SIOCGIFADDR, &ifr);
+    close(sock_id);
+
+    return inet_ntoa(( (struct sockaddr_in *)&ifr.ifr_addr )->sin_addr);
+}
+
 
 nicMonitor::~nicMonitor()
 {
