@@ -101,7 +101,7 @@ int nicMonitor::netlink_link_state(struct sockaddr_nl *nl, struct nlmsghdr *msg)
 
     printf("netlink_link_state: Link %s\n",
            /*(ifi->ifi_flags & IFF_RUNNING)?"Up":"Down");*/
-           (ifi->ifi_flags & IFF_UP) ? "Up" : "Down");
+           (ifi->ifi_flags & IFF_RUNNING) ? "Up" : "Down");
     // printf("netlink_link_state: Link %s %s\n",
     //        /*(ifi->ifi_flags & IFF_RUNNING)?"Up":"Down");*/
     //        ifname, (ifi->ifi_flags & IFF_UP) ? "Up" : "Down");
@@ -135,13 +135,13 @@ int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
             ip=mtr.nametoIP(ifname);
 
             printf("msg_handler: RTM_DELADDR\n");
-            printf("msg_handler: Interface_name:%s Interface IP:%s\n", ifname,ip.c_str());
+            printf("msg_handler: Interface_name:%s\n", ifname);
             mtr.netlink_link_state(nl, msg);
 
             writer.Key("Interface Name:");
             writer.String(ifname);
             writer.Key("IP Addess");
-            writer.String(ip.c_str());
+            writer.String("");
             break;
         case RTM_NEWLINK:
             if_indextoname(ifi->ifi_index, ifname);
@@ -156,30 +156,54 @@ int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
             writer.String(ip.c_str());
             break;
 
-        // case RTM_NEWADDR:
-        //     if_indextoname(ifi->ifi_index, ifname);
-        //     printf("msg_handler: RTM_NEWADDR\n");
-        //     printf("msg_handler: Interface_name:%s\n", ifname);
-        //     mtr.netlink_link_state(nl, msg);
-        //     break;
+        case RTM_NEWADDR:
+            if_indextoname(ifi->ifi_index, ifname);
+            ip=mtr.nametoIP(ifname);
+            printf("msg_handler: RTM_NEWADDR\n");
+            printf("msg_handler: Interface_name:%s\n", ifname);
+            mtr.netlink_link_state(nl, msg);
 
-        // case RTM_NEWROUTE:
-        //     if_indextoname(ifi->ifi_index, ifname);
-        //     printf("msg_handler: RTM_NEWROUTE\n");
-        //     printf("msg_handler: Interface_name:%s\n", ifname);
-        //     break;
+            writer.Key("Interface Name:");
+            writer.String(ifname);
+            writer.Key("IP Addess");
+            writer.String(ip.c_str());
+            break;
 
-        // case RTM_DELROUTE:
-        //     if_indextoname(ifi->ifi_index, ifname);
-        //     printf("msg_handler: RTM_DELROUTE\n");
-        //     printf("msg_handler: Interface_name:%s\n", ifname);
-        //     break;
+        case RTM_NEWROUTE:
+            if_indextoname(ifi->ifi_index, ifname);
+            ip=mtr.nametoIP(ifname);
+            printf("msg_handler: RTM_NEWROUTE\n");
+            printf("msg_handler: Interface_name:%s\n", ifname);
 
-        // case RTM_DELLINK:
-        //     if_indextoname(ifi->ifi_index, ifname);
-        //     printf("msg_handler: RTM_DELLINK\n");
-        //     printf("msg_handler: Interface_name:%s\n", ifname);
-        //     break;
+            writer.Key("Interface Name:");
+            writer.String(ifname);
+            writer.Key("IP Addess");
+            writer.String(ip.c_str());
+            break;
+
+        case RTM_DELROUTE:
+            if_indextoname(ifi->ifi_index, ifname);
+            ip=mtr.nametoIP(ifname);
+            printf("msg_handler: RTM_DELROUTE\n");
+            printf("msg_handler: Interface_name:%s\n", ifname);
+
+            writer.Key("Interface Name:");
+            writer.String(ifname);
+            writer.Key("IP Addess");
+            writer.String(ip.c_str());
+            break;
+
+        case RTM_DELLINK:
+            if_indextoname(ifi->ifi_index, ifname);
+            ip=mtr.nametoIP(ifname);
+            printf("msg_handler: RTM_DELLINK\n");
+            printf("msg_handler: Interface_name:%s\n", ifname);
+
+            writer.Key("Interface Name:");
+            writer.String(ifname);
+            writer.Key("IP Addess");
+            writer.String(ip.c_str());
+            break;
 
         // default:
         //     printf("msg_handler: Unknown netlink nlmsg_type %d\n",
