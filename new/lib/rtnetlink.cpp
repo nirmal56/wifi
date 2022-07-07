@@ -1,5 +1,7 @@
 #include "rtnetlink.h"
-#include<iostream>
+#include <iostream>
+bool flag =true;
+
 nicMonitor::nicMonitor()
 {
 }
@@ -20,7 +22,7 @@ int nicMonitor::open_netlink()
         return sock;
     addr.nl_family = AF_NETLINK;
     addr.nl_pid = getpid();
-    addr.nl_groups = /*RTMGRP_LINK |*/ RTMGRP_IPV4_IFADDR;// | RTMGRP_IPV6_IFADDR;
+    addr.nl_groups = /*RTMGRP_LINK |*/ RTMGRP_IPV4_IFADDR; // | RTMGRP_IPV6_IFADDR;
     if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         return -1;
     return sock;
@@ -101,8 +103,8 @@ int nicMonitor::netlink_link_state(struct sockaddr_nl *nl, struct nlmsghdr *msg)
     if_indextoname(ifi->ifi_index, ifname);
 
     // printf("netlink_link_state: Link %s\n",
-           /*(ifi->ifi_flags & IFF_RUNNING)?"Up":"Down");*/
-        //    (ifi->ifi_flags & IFF_UP) ? "Up" : "Down");
+    /*(ifi->ifi_flags & IFF_RUNNING)?"Up":"Down");*/
+    //    (ifi->ifi_flags & IFF_UP) ? "Up" : "Down");
     return 0;
 }
 
@@ -114,92 +116,104 @@ int nicMonitor::msg_handler(struct sockaddr_nl *nl, struct nlmsghdr *msg)
     std::string ip;
     nicMonitor mtr;
 
-    //for json payload
+    // bool flag = true;
+    // for json payload
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
 
-    //for timestamp
+    // for timestamp
     auto timestamp = std::chrono::system_clock::now();
-
-    writer.StartObject();
-
-    writer.Key("timestamp");
-    writer.Int64(std::chrono::duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count());
 
     // switch (msg->nlmsg_type)
     // {
-        if(msg->nlmsg_type == RTM_DELADDR) {
+    if ((msg->nlmsg_type == RTM_DELADDR))
+    {
 
-            // std::cout<<"\n"<<msg->nlmsg_type<<"\n\n";
+        // std::cout<<"\n"<<msg->nlmsg_type<<"\n\n";
 
+        if_indextoname(ifi->ifi_index, ifname);
+        ip = mtr.nametoIP(ifname);
+
+        printf("msg_handler: RTM_DELADDR\n");
+        // printf("msg_handler: Interface_name:%s\n", ifname);
+        mtr.netlink_link_state(nl, msg);
+        writer.StartObject();
+        writer.Key("timestamp");
+        writer.Int64(std::chrono::duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count());
+        writer.Key("Interface Name");
+        writer.String(ifname);
+        writer.Key("IP Address");
+        writer.String("");
+    writer.EndObject();
+        flag = true;
+    }
+
+    // break;
+    if ((msg->nlmsg_type == RTM_NEWLINK))
+    {
+
+        // std::cout<<"\n"<<msg->nlmsg_type<<"\n\n";
+
+        if_indextoname(ifi->ifi_index, ifname);
+        ip = mtr.nametoIP(ifname);
+        printf("msg_handler: RTM_NEWLINK\n");
+        // printf("msg_handler: Interface_name:%s Interface IP:%s\n", ifname,ip.c_str());
+        mtr.netlink_link_state(nl, msg);
+
+        writer.StartObject();
+        writer.Key("timestamp");
+        writer.Int64(std::chrono::duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count());
+        writer.Key("Interface Name");
+        writer.String(ifname);
+        writer.Key("IP Address");
+        writer.String(ip.c_str());
+        writer.EndObject();
+        flag=true;
+    }
+
+    // break;
+
+    if ((msg->nlmsg_type == RTM_NEWADDR))
+    {
+
+        // std::cout<<"\n"<<msg->nlmsg_type<<"\n\n";
+        if (flag == true)
+        {
             if_indextoname(ifi->ifi_index, ifname);
-            ip=mtr.nametoIP(ifname);
-
-            printf("msg_handler: RTM_DELADDR\n");
-            // printf("msg_handler: Interface_name:%s\n", ifname);
-            mtr.netlink_link_state(nl, msg);
-
-            writer.Key("Interface Name");
-            writer.String(ifname);
-            writer.Key("IP Address");
-            writer.String("");
-        }
-            
-            // break;
-        if(msg->nlmsg_type == RTM_NEWLINK){
-
-            // std::cout<<"\n"<<msg->nlmsg_type<<"\n\n";
-
-            if_indextoname(ifi->ifi_index, ifname);
-            ip=mtr.nametoIP(ifname);
-            printf("msg_handler: RTM_NEWLINK\n");
-            // printf("msg_handler: Interface_name:%s Interface IP:%s\n", ifname,ip.c_str());
-            mtr.netlink_link_state(nl, msg);
-
-            writer.Key("Interface Name");
-            writer.String(ifname);
-            writer.Key("IP Address");
-            writer.String(ip.c_str());
-
-        }
-            
-            // break;
-
-        if(msg->nlmsg_type == RTM_NEWADDR) {
-
-            // std::cout<<"\n"<<msg->nlmsg_type<<"\n\n";
-
-            if_indextoname(ifi->ifi_index, ifname);
-            ip=mtr.nametoIP(ifname);
+            ip = mtr.nametoIP(ifname);
             printf("msg_handler: RTM_NEWADDR\n");
             // printf("msg_handler: Interface_name:%s\n", ifname);
             mtr.netlink_link_state(nl, msg);
-
+            writer.StartObject();
+            writer.Key("timestamp");
+            writer.Int64(std::chrono::duration_cast<std::chrono::milliseconds>(timestamp.time_since_epoch()).count());
             writer.Key("Interface Name");
             writer.String(ifname);
             writer.Key("IP Address");
             writer.String(ip.c_str());
+            writer.EndObject();
+            flag = !flag;
         }
-            
-            // break;
+    }
+
+    // break;
     // }
-    writer.EndObject();
-    std::cout<<buffer.GetString()<<std::endl<<std::endl;
+    std::cout << buffer.GetString() << std::endl
+              << std::endl;
     return 0;
 }
 
-
-char* nicMonitor::nametoIP(char * name)
+char *nicMonitor::nametoIP(char *name)
 {
     struct ifreq ifr;
     int sock_id = socket(AF_INET, SOCK_DGRAM, 0);
 
     ifr.ifr_addr.sa_family = AF_INET;
-    strncpy(ifr.ifr_name, name, IFNAMSIZ -1);
+    strncpy(ifr.ifr_name, name, IFNAMSIZ - 1);
     ioctl(sock_id, SIOCGIFADDR, &ifr);
     close(sock_id);
 
-    return inet_ntoa(( (struct sockaddr_in *)&ifr.ifr_addr )->sin_addr);
+    return inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
 }
 std::string toJson(std::string key, std::string value, bool close = false)
 {
@@ -217,53 +231,52 @@ std::string toJson(std::string key, std::string value, bool close = false)
     return buffer.GetString();
 }
 
-
 nicMonitor::~nicMonitor()
 {
 }
 
-//bunch of comments for unncessary events for now
+// bunch of comments for unncessary events for now
 
-        // case RTM_NEWROUTE:
-        //     if_indextoname(ifi->ifi_index, ifname);
-        //     ip=mtr.nametoIP(ifname);
-        //     printf("msg_handler: RTM_NEWROUTE\n");
-        //     // printf("msg_handler: Interface_name:%s\n", ifname);
+// case RTM_NEWROUTE:
+//     if_indextoname(ifi->ifi_index, ifname);
+//     ip=mtr.nametoIP(ifname);
+//     printf("msg_handler: RTM_NEWROUTE\n");
+//     // printf("msg_handler: Interface_name:%s\n", ifname);
 
-        //     writer.Key("Interface Name");
-        //     writer.String(ifname);
-        //     writer.Key("IP Address");
-        //     writer.String(ip.c_str());
-        //     break;
+//     writer.Key("Interface Name");
+//     writer.String(ifname);
+//     writer.Key("IP Address");
+//     writer.String(ip.c_str());
+//     break;
 
-        // case RTM_DELROUTE:
-        //     if_indextoname(ifi->ifi_index, ifname);
-        //     ip=mtr.nametoIP(ifname);
-        //     printf("msg_handler: RTM_DELROUTE\n");
-        //     // printf("msg_handler: Interface_name:%s\n", ifname);
+// case RTM_DELROUTE:
+//     if_indextoname(ifi->ifi_index, ifname);
+//     ip=mtr.nametoIP(ifname);
+//     printf("msg_handler: RTM_DELROUTE\n");
+//     // printf("msg_handler: Interface_name:%s\n", ifname);
 
-        //     writer.Key("Interface Name");
-        //     writer.String(ifname);
-        //     writer.Key("IP Address");
-        //     writer.String(ip.c_str());
-        //     break;
+//     writer.Key("Interface Name");
+//     writer.String(ifname);
+//     writer.Key("IP Address");
+//     writer.String(ip.c_str());
+//     break;
 
-        // case RTM_DELLINK:
-        //     if_indextoname(ifi->ifi_index, ifname);
-        //     ip=mtr.nametoIP(ifname);
-        //     printf("msg_handler: RTM_DELLINK\n");
-        //     // printf("msg_handler: Interface_name:%s\n", ifname);
+// case RTM_DELLINK:
+//     if_indextoname(ifi->ifi_index, ifname);
+//     ip=mtr.nametoIP(ifname);
+//     printf("msg_handler: RTM_DELLINK\n");
+//     // printf("msg_handler: Interface_name:%s\n", ifname);
 
-        //     writer.Key("Interface Name");
-        //     writer.String(ifname);
-        //     writer.Key("IP Address");
-        //     writer.String(ip.c_str());
-        //     break;
+//     writer.Key("Interface Name");
+//     writer.String(ifname);
+//     writer.Key("IP Address");
+//     writer.String(ip.c_str());
+//     break;
 
-        // default:
-        //     printf("msg_handler: Unknown netlink nlmsg_type %d\n",
-        //            msg->nlmsg_type);
-        //     break;
+// default:
+//     printf("msg_handler: Unknown netlink nlmsg_type %d\n",
+//            msg->nlmsg_type);
+//     break;
 
 // old msg_handler without interface name
 

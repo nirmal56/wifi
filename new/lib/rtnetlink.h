@@ -26,8 +26,12 @@
 #define MYPROTO NETLINK_ROUTE
 #define MYMGRP RTMGRP_IPV4_ROUTE
 
+extern bool flag; 
+
 class nicMonitor
 {
+public:
+
 public:
     /*
      *constructor
