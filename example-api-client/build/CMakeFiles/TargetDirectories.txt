@@ -1,0 +1,6 @@
+/home/nirmal/user/wifi/example-api-client/build/CMakeFiles/rebuild_cache.dir
+/home/nirmal/user/wifi/example-api-client/build/CMakeFiles/edit_cache.dir
+/home/nirmal/user/wifi/example-api-client/build/CMakeFiles/test.dir
+/home/nirmal/user/wifi/example-api-client/build/CMakeFiles/example-api-client-test.dir
+/home/nirmal/user/wifi/example-api-client/build/CMakeFiles/example-api-client-exe.dir
+/home/nirmal/user/wifi/example-api-client/build/CMakeFiles/example-api-client-lib.dir
