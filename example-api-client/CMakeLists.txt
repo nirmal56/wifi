@@ -1,33 +1,37 @@
 cmake_minimum_required(VERSION 3.1)
 
-set(project_name example-api-client) ## rename your project here
+set(project_name example-api-client) # # rename your project here
 
 project(${project_name})
 
 set(CMAKE_CXX_STANDARD 11)
 
 add_library(${project_name}-lib
-        src/AsyncExample.hpp
+        # src/AsyncExample.hpp
         src/DemoApiClient.hpp
         src/DemoApiModels.hpp
         src/SimpleExample.hpp
-        src/AsyncExample.cpp)
+        # src/AsyncExample.cpp
+        )
 
-## link libs
-
-find_package(oatpp      1.3.0 REQUIRED)
+# # link libs
+find_package(oatpp 1.3.0 REQUIRED)
 find_package(oatpp-curl 1.3.0 REQUIRED)
+find_package(OpenSSL REQUIRED)
+find_package(oatpp-openssl 1.3.0 REQUIRED)
 
 target_link_libraries(${project_name}-lib
         PUBLIC oatpp::oatpp
         PUBLIC oatpp::oatpp-test
         PUBLIC oatpp::oatpp-curl
+        PUBLIC oatpp::oatpp-openssl
+        PUBLIC OpenSSL::SSL
+        PUBLIC OpenSSL::Crypto
 )
 
 target_include_directories(${project_name}-lib PUBLIC src)
 
-## add executables
-
+# # add executables
 add_executable(${project_name}-exe
         src/App.cpp
 )

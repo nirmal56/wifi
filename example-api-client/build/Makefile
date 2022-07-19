@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mayank/Desktop/example-api-client_https
+CMAKE_SOURCE_DIR = /home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mayank/Desktop/example-api-client_https/build
+CMAKE_BINARY_DIR = /home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -91,9 +91,9 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/Desktop/example-api-client_https/build/CMakeFiles /home/mayank/Desktop/example-api-client_https/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/build/CMakeFiles /home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/Desktop/example-api-client_https/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

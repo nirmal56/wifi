@@ -1,4 +1,4 @@
-# Install script for directory: /home/mayank/Desktop/example-api-client_https
+# Install script for directory: /home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/mayank/Desktop/example-api-client_https/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -6,51 +6,51 @@
 
 #IncludeRegexTransform: 
 
-/home/mayank/Desktop/example-api-client_https/src/App.cpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/App.cpp
 AsyncExample.hpp
-/home/mayank/Desktop/example-api-client_https/src/AsyncExample.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/AsyncExample.hpp
 SimpleExample.hpp
-/home/mayank/Desktop/example-api-client_https/src/SimpleExample.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/SimpleExample.hpp
 DemoApiClient.hpp
-/home/mayank/Desktop/example-api-client_https/src/DemoApiClient.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/DemoApiClient.hpp
 oatpp-curl/RequestExecutor.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp-curl/RequestExecutor.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp-curl/RequestExecutor.hpp
 oatpp/web/client/HttpRequestExecutor.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/web/client/HttpRequestExecutor.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/web/client/HttpRequestExecutor.hpp
 oatpp/network/tcp/client/ConnectionProvider.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/network/tcp/client/ConnectionProvider.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/network/tcp/client/ConnectionProvider.hpp
 oatpp/parser/json/mapping/ObjectMapper.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/parser/json/mapping/ObjectMapper.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/parser/json/mapping/ObjectMapper.hpp
 oatpp-openssl/client/ConnectionProvider.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp-openssl/client/ConnectionProvider.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp-openssl/client/ConnectionProvider.hpp
 oatpp-openssl/Config.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp-openssl/Config.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp-openssl/Config.hpp
 iostream
 -
 
-/home/mayank/Desktop/example-api-client_https/src/AsyncExample.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/AsyncExample.hpp
 ./DemoApiClient.hpp
-/home/mayank/Desktop/example-api-client_https/src/DemoApiClient.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/DemoApiClient.hpp
 oatpp/core/async/Executor.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/core/async/Executor.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/core/async/Executor.hpp
 
-/home/mayank/Desktop/example-api-client_https/src/DemoApiClient.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/DemoApiClient.hpp
 DemoApiModels.hpp
-/home/mayank/Desktop/example-api-client_https/src/DemoApiModels.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/DemoApiModels.hpp
 oatpp/web/client/ApiClient.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/web/client/ApiClient.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/web/client/ApiClient.hpp
 oatpp/core/macro/codegen.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/core/macro/codegen.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/core/macro/codegen.hpp
 
-/home/mayank/Desktop/example-api-client_https/src/DemoApiModels.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/DemoApiModels.hpp
 oatpp/core/Types.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/core/Types.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/core/Types.hpp
 oatpp/core/macro/codegen.hpp
-/home/mayank/Desktop/example-api-client_https/src/oatpp/core/macro/codegen.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/oatpp/core/macro/codegen.hpp
 
-/home/mayank/Desktop/example-api-client_https/src/SimpleExample.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/SimpleExample.hpp
 ./DemoApiClient.hpp
-/home/mayank/Desktop/example-api-client_https/src/DemoApiClient.hpp
+/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/src/DemoApiClient.hpp
 
 /usr/local/include/oatpp-1.3.0/oatpp-curl/oatpp-curl/RequestExecutor.hpp
 ./io/BodyDecoder.hpp

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mayank/Desktop/example-api-client_https/test/tests.cpp" "/home/mayank/Desktop/example-api-client_https/build/CMakeFiles/example-api-client-test.dir/test/tests.cpp.o"
+  "/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/test/tests.cpp" "/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/build/CMakeFiles/example-api-client-test.dir/test/tests.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,7 +18,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/mayank/Desktop/example-api-client_https/build/CMakeFiles/example-api-client-lib.dir/DependInfo.cmake"
+  "/home/mayank/Downloads/nirmal_git_repo/wifi/example-api-client/build/CMakeFiles/example-api-client-lib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
