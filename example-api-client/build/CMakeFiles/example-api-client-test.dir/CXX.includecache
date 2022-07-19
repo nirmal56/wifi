@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/nirmal/user/wifi/example-api-client/test/tests.cpp
+/home/mayank/Desktop/example-api-client_https/test/tests.cpp
 oatpp-test/UnitTest.hpp
-/home/nirmal/user/wifi/example-api-client/test/oatpp-test/UnitTest.hpp
+/home/mayank/Desktop/example-api-client_https/test/oatpp-test/UnitTest.hpp
 iostream
 -
 

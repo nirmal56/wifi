@@ -10,21 +10,32 @@
 #include "oatpp/network/tcp/client/ConnectionProvider.hpp"
 
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
+#include "oatpp-openssl/client/ConnectionProvider.hpp"
+#include "oatpp-openssl/Config.hpp"
 
 #include <iostream>
 
 std::shared_ptr<oatpp::web::client::RequestExecutor> createOatppExecutor() {
   OATPP_LOGD("App", "Using Oat++ native HttpRequestExecutor.");
-  auto connectionProvider = oatpp::network::tcp::client::ConnectionProvider::createShared({"127.0.0.1", 3000});
+  auto connectionProvider = oatpp::network::tcp::client::ConnectionProvider::createShared({"127.0.0.1", 3004});
   return oatpp::web::client::HttpRequestExecutor::createShared(connectionProvider);
 }
 
 std::shared_ptr<oatpp::web::client::RequestExecutor> createCurlExecutor() {
   OATPP_LOGD("App", "Using oatpp-curl RequestExecutor.");
-  return oatpp::curl::RequestExecutor::createShared("http://127.0.0.1:3000/", false /* set verbose=true for dubug info */);
+  return oatpp::curl::RequestExecutor::createShared("https://127.0.0.1:3004/", false /* set verbose=true for dubug info */);
 }
 
+// auto config = oatpp::openssl::Config::createShared();
+// auto connectionProvider = oatpp::openssl::client::ConnectionProvider::createShared(config, {"https://127.0.0.1:3004/", 3004});
+
+  // tls_config_insecure_noverifycert(config->getTLSConfig());
+  //  tls_config_insecure_noverifyname(config->getTLSConfig());
+
+
 void run(){
+
+  
   
   /* Create ObjectMapper for serialization of DTOs  */
   auto objectMapper = oatpp::parser::json::mapping::ObjectMapper::createShared();
@@ -35,7 +46,12 @@ void run(){
   
   /* DemoApiClient uses DemoRequestExecutor and json::mapping::ObjectMapper */
   /* ObjectMapper passed here is used for serialization of outgoing DTOs */
+  auto config = oatpp::openssl::Config::createShared();
+  auto connectionProvider = oatpp::openssl::client::ConnectionProvider::createShared(config, {"https://127.0.0.1:3004/", 3004});
+
   auto client = DemoApiClient::createShared(requestExecutor, objectMapper);
+
+  
   
   SimpleExample::runExample(client);
   // AsyncExample::runExample(client);

@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/nirmal/user/wifi/example-api-client/src -isystem /usr/local/include/oatpp-1.3.0/oatpp -isystem /usr/local/include/oatpp-1.3.0/oatpp-curl 
+CXX_INCLUDES = -I/home/mayank/Desktop/example-api-client_https/src -isystem /usr/local/include/oatpp-1.3.0/oatpp -isystem /usr/local/include/oatpp-1.3.0/oatpp-curl -isystem /usr/local/include/oatpp-1.3.0/oatpp-openssl 
 

@@ -8,6 +8,9 @@ CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: ../src/DemoApiModels.hpp
 CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: ../src/SimpleExample.hpp
 CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp-curl/oatpp-curl/RequestExecutor.hpp
 CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp-curl/oatpp-curl/io/BodyDecoder.hpp
+CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp-openssl/oatpp-openssl/Config.hpp
+CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp-openssl/oatpp-openssl/client/ConnectionProvider.hpp
+CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp-openssl/oatpp-openssl/configurer/ContextConfigurer.hpp
 CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp/oatpp/core/IODefinitions.hpp
 CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp/oatpp/core/Types.hpp
 CMakeFiles/example-api-client-exe.dir/src/App.cpp.o: /usr/local/include/oatpp-1.3.0/oatpp/oatpp/core/async/Coroutine.hpp

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nirmal/user/wifi/example-api-client
+CMAKE_SOURCE_DIR = /home/mayank/Desktop/example-api-client_https
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nirmal/user/wifi/example-api-client/build
+CMAKE_BINARY_DIR = /home/mayank/Desktop/example-api-client_https/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/example-api-client-lib.dir/depend.make
@@ -57,30 +57,15 @@ include CMakeFiles/example-api-client-lib.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/example-api-client-lib.dir/flags.make
 
-CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.o: CMakeFiles/example-api-client-lib.dir/flags.make
-CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.o: ../src/AsyncExample.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nirmal/user/wifi/example-api-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.o -c /home/nirmal/user/wifi/example-api-client/src/AsyncExample.cpp
-
-CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nirmal/user/wifi/example-api-client/src/AsyncExample.cpp > CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.i
-
-CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nirmal/user/wifi/example-api-client/src/AsyncExample.cpp -o CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.s
-
 # Object files for target example-api-client-lib
-example__api__client__lib_OBJECTS = \
-"CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.o"
+example__api__client__lib_OBJECTS =
 
 # External object files for target example-api-client-lib
 example__api__client__lib_EXTERNAL_OBJECTS =
 
-libexample-api-client-lib.a: CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.o
 libexample-api-client-lib.a: CMakeFiles/example-api-client-lib.dir/build.make
 libexample-api-client-lib.a: CMakeFiles/example-api-client-lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nirmal/user/wifi/example-api-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libexample-api-client-lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mayank/Desktop/example-api-client_https/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Linking CXX static library libexample-api-client-lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/example-api-client-lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/example-api-client-lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -94,6 +79,6 @@ CMakeFiles/example-api-client-lib.dir/clean:
 .PHONY : CMakeFiles/example-api-client-lib.dir/clean
 
 CMakeFiles/example-api-client-lib.dir/depend:
-	cd /home/nirmal/user/wifi/example-api-client/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nirmal/user/wifi/example-api-client /home/nirmal/user/wifi/example-api-client /home/nirmal/user/wifi/example-api-client/build /home/nirmal/user/wifi/example-api-client/build /home/nirmal/user/wifi/example-api-client/build/CMakeFiles/example-api-client-lib.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mayank/Desktop/example-api-client_https/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mayank/Desktop/example-api-client_https /home/mayank/Desktop/example-api-client_https /home/mayank/Desktop/example-api-client_https/build /home/mayank/Desktop/example-api-client_https/build /home/mayank/Desktop/example-api-client_https/build/CMakeFiles/example-api-client-lib.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/example-api-client-lib.dir/depend
 

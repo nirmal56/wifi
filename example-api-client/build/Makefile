@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nirmal/user/wifi/example-api-client
+CMAKE_SOURCE_DIR = /home/mayank/Desktop/example-api-client_https
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nirmal/user/wifi/example-api-client/build
+CMAKE_BINARY_DIR = /home/mayank/Desktop/example-api-client_https/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -91,9 +91,9 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nirmal/user/wifi/example-api-client/build/CMakeFiles /home/nirmal/user/wifi/example-api-client/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/Desktop/example-api-client_https/build/CMakeFiles /home/mayank/Desktop/example-api-client_https/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nirmal/user/wifi/example-api-client/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mayank/Desktop/example-api-client_https/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -187,33 +187,6 @@ src/App.cpp.s:
 	$(MAKE) -f CMakeFiles/example-api-client-exe.dir/build.make CMakeFiles/example-api-client-exe.dir/src/App.cpp.s
 .PHONY : src/App.cpp.s
 
-src/AsyncExample.o: src/AsyncExample.cpp.o
-
-.PHONY : src/AsyncExample.o
-
-# target to build an object file
-src/AsyncExample.cpp.o:
-	$(MAKE) -f CMakeFiles/example-api-client-lib.dir/build.make CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.o
-.PHONY : src/AsyncExample.cpp.o
-
-src/AsyncExample.i: src/AsyncExample.cpp.i
-
-.PHONY : src/AsyncExample.i
-
-# target to preprocess a source file
-src/AsyncExample.cpp.i:
-	$(MAKE) -f CMakeFiles/example-api-client-lib.dir/build.make CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.i
-.PHONY : src/AsyncExample.cpp.i
-
-src/AsyncExample.s: src/AsyncExample.cpp.s
-
-.PHONY : src/AsyncExample.s
-
-# target to generate assembly for a file
-src/AsyncExample.cpp.s:
-	$(MAKE) -f CMakeFiles/example-api-client-lib.dir/build.make CMakeFiles/example-api-client-lib.dir/src/AsyncExample.cpp.s
-.PHONY : src/AsyncExample.cpp.s
-
 test/tests.o: test/tests.cpp.o
 
 .PHONY : test/tests.o
@@ -256,9 +229,6 @@ help:
 	@echo "... src/App.o"
 	@echo "... src/App.i"
 	@echo "... src/App.s"
-	@echo "... src/AsyncExample.o"
-	@echo "... src/AsyncExample.i"
-	@echo "... src/AsyncExample.s"
 	@echo "... test/tests.o"
 	@echo "... test/tests.i"
 	@echo "... test/tests.s"
