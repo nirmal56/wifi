@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    nicMonitor instance;
+    serenity::nicMonitor instance;
     int nls = instance.open_netlink();
     struct sockaddr_nl *nl;
     struct nlmsghdr *msg;
@@ -14,7 +14,7 @@ int main()
     {
         printf("Open Error!");
     }
-    auto Callback = std::bind(&nicMonitor::read_print,
+    auto Callback = std::bind(&serenity::nicMonitor::read_print,
                               &instance,
                               std::placeholders::_1,
                               std::placeholders::_2,

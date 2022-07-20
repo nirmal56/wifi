@@ -27,7 +27,7 @@
 #define MYMGRP RTMGRP_IPV4_ROUTE
 
 extern bool flag; 
-
+namespace serenity {
 class nicMonitor
 {
 public:
@@ -101,5 +101,5 @@ public:
      */
     ~nicMonitor();
 };
-
+}
 #endif // RTNETLINK_H_

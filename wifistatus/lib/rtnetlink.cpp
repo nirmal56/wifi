@@ -1,7 +1,7 @@
 #include "rtnetlink.h"
 #include <iostream>
 bool flag =true;
-
+namespace serenity{
 nicMonitor::nicMonitor()
 {
 }
@@ -234,7 +234,7 @@ std::string toJson(std::string key, std::string value, bool close = false)
 nicMonitor::~nicMonitor()
 {
 }
-
+}
 // bunch of comments for unncessary events for now
 
 // case RTM_NEWROUTE:
